@@ -1,5 +1,6 @@
 package testeCapgemini.questoes;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -12,7 +13,7 @@ public class AtividadeTres
 		Scanner sc = new Scanner(System.in);
 		
 		System.out.print("Digite uma palavra : ");
-		String palavra = sc.next();
+		String palavra = sc.next().toLowerCase();
 		
 		String[] substrings = extrairTrechos(palavra);
 		
@@ -32,12 +33,13 @@ public class AtividadeTres
 			//Esse laço une o carácter inicial com todos os seguintes
 			for(int j = i; j <= palavra.length(); j++)
 			{
-				substr.add(palavra.substring(i, j));
+				if (!palavra.substring(i, j).isEmpty())
+				{
+					System.out.println(palavra.substring(i, j));
+					substr.add(palavra.substring(i, j));
+				}
 			}
 		}
-		
-		substr.removeAll(Arrays.asList("", null));
-		//Por algum motivo, a lista possui espaços em branco. Esse trecho limpa eles
 		
 		String[] substrings = substr.toArray(new String[substr.size()]);
 		
@@ -52,13 +54,21 @@ public class AtividadeTres
 		{
 			for(int j = i + 1; j < trechos.length; j++)
 			{
-				String aux = new StringBuilder(trechos[j]).reverse().toString(); //Inverte os subconjuntos seguintes
+				boolean eAnagrama = trechos[i].length() == trechos[j].length();
 				
-				//System.out.println(trechos[i] + "/" + aux); 
-				//O trecho acima pode ser descomentado para poder se ver os pares
-				
-				if (trechos[i].equals(aux)) //Testa a igualdade, já que o operador '==' não funciona
-					ocorrencias++;
+				if(eAnagrama)
+				{
+					char[] palavrai = trechos[i].toCharArray();
+					char[] palavraj = trechos[j].toCharArray();
+					
+					Arrays.sort(palavrai);
+					Arrays.sort(palavraj);
+					
+					if(Arrays.equals(palavrai, palavraj))
+					{
+						ocorrencias++;
+					}
+				}
 			}
 		}
 		

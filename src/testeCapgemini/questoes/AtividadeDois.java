@@ -9,16 +9,15 @@ public class AtividadeDois
 	{
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
-		
 		while (true)
 		{
 			System.out.println("Informe uma senha : ");
 			String senha = sc.next();
-			
+				
 			verificarSenha(senha);
-			
+				
 			char opc = 'a';
-			
+				
 			while (opc != 's' && opc != 'n')
 			{
 				System.out.println("Deseja digitar outra senha?");
@@ -27,7 +26,7 @@ public class AtividadeDois
 				if (opc != 'n' && opc != 's')
 					System.out.println("Opção Inválida!");
 			}
-			
+				
 			if (opc == 'n')
 				break; //Sai do programa
 		}
@@ -47,10 +46,7 @@ public class AtividadeDois
 			System.out.print(MessageFormat.format("A senha precisa de mais {0} dígitos", caracteres));
 			if (temErros)
 				System.out.println(", e");
-		}
-		
-		else
-		{
+		} else {
 			System.out.print("A senha está com o número certo de carácteres");
 			if (temErros)
 				System.out.println(", mas");
@@ -58,10 +54,10 @@ public class AtividadeDois
 		
 		if (temErros)
 		{
-			for (int i = 0;i < erros.length;i++)
+			for (String erro : erros)	
 			{
-				if (erros[i] != null)
-					System.out.println(erros[i]);
+				if (erro != null)
+					System.out.println(erro);
 			}
 		}
 		
